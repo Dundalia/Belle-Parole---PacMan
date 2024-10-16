@@ -1,28 +1,5 @@
-
-// Copyright 2012 Shaun Williams
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License Version 3 as 
-//  published by the Free Software Foundation.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-
-// ==========================================================================
-// PAC-MAN
-// an accurate remake of the original arcade game
-
-// Based on original works by Namco, GCC, and Midway.
-// Research by Jamey Pittman and Bart Grantham
-// Developed by Shaun Williams, Mason Borda
-
-// ==========================================================================
-
-(function(){
-
-//@line 1 "src/inherit.js"
+(function() {
+// File: src/inherit.js
 //  Apparently, the mutable, non-standard __proto__ property creates a lot of complexity for JS optimizers,
 //   so it may be phased out in future JS versions.  It's not even supported in Internet Explorer.
 //
@@ -62,7 +39,7 @@ var newChildObject = function(parentObj, newObj) {
 };
 
 var DEBUG = false;
-//@line 1 "src/sound.js"
+// File: src/sound.js
 /* Sound handlers added by Dr James Freeman who was sad such a great reverse was a silent movie  */
 
 var audio = new preloadAudio();
@@ -147,7 +124,7 @@ function preloadAudio() {
         }
     }
 }
-//@line 1 "src/random.js"
+// File: src/random.js
 
 var getRandomColor = function() {
     return '#'+('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6);
@@ -157,7 +134,7 @@ var getRandomInt = function(min,max) {
     return Math.floor(Math.random() * (max-min+1)) + min;
 };
 
-//@line 1 "src/game.js"
+// File: src/game.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Game
 
@@ -435,7 +412,7 @@ var saveHighScores = function() {
         localStorage.highScores = JSON.stringify(highScores);
     }
 };
-//@line 1 "src/direction.js"
+// File: src/direction.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Directions
 // (variables and utility functions for representing actor heading direction)
@@ -540,7 +517,7 @@ var isNextTileFloor = function(tile,dir) {
     return map.isFloorTile(tile.x+dir.x,tile.y+dir.y);
 };
 
-//@line 1 "src/Map.js"
+// File: src/Map.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Map
 // (an ascii map of tiles representing a level maze)
@@ -925,7 +902,7 @@ Map.prototype.onDotEat = function(x,y) {
     this.timeEaten[i] = vcr.getTime();
     renderer.erasePellet(x,y);
 };
-//@line 1 "src/colors.js"
+// File: src/colors.js
 // source: http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
 
 /**
@@ -1075,7 +1052,7 @@ function rgbString(rgb) {
     var b = Math.floor(rgb[2]);
     return 'rgb('+r+','+g+','+b+')';
 }
-//@line 1 "src/mapgen.js"
+// File: src/mapgen.js
 var mapgen = (function(){
 
     var shuffle = function(list) {
@@ -2527,7 +2504,7 @@ var mapgen = (function(){
         return map;
     };
 })();
-//@line 1 "src/atlas.js"
+// File: src/atlas.js
 
 var atlas = (function(){
 
@@ -3049,7 +3026,7 @@ var atlas = (function(){
         drawSnail: copySnail,
     };
 })();
-//@line 1 "src/renderers.js"
+// File: src/renderers.js
 //////////////////////////////////////////////////////////////
 // Renderers
 
@@ -4130,7 +4107,7 @@ var initRenderer = function(){
     ];
     renderer = renderer_list[1];
 };
-//@line 1 "src/hud.js"
+// File: src/hud.js
 
 var hud = (function(){
 
@@ -4169,7 +4146,7 @@ var hud = (function(){
     };
 
 })();
-//@line 1 "src/galagaStars.js"
+// File: src/galagaStars.js
 
 var galagaStars = (function() {
 
@@ -4239,7 +4216,7 @@ var galagaStars = (function() {
     };
 
 })();
-//@line 1 "src/Button.js"
+// File: src/Button.js
 var getPointerPos = function(evt) {
     var obj = canvas;
     var top = 0;
@@ -4501,7 +4478,7 @@ ToggleButton.prototype = newChildObject(Button.prototype, {
     },
 
 });
-//@line 1 "src/Menu.js"
+// File: src/Menu.js
 var Menu = function(title,x,y,w,h,pad,font,fontcolor) {
     this.title = title;
     this.x = x;
@@ -4655,7 +4632,7 @@ Menu.prototype = {
         }
     },
 };
-//@line 1 "src/inGameMenu.js"
+// File: src/inGameMenu.js
 ////////////////////////////////////////////////////
 // In-Game Menu
 var inGameMenu = (function() {
@@ -4834,7 +4811,7 @@ var inGameMenu = (function() {
     };
 })();
 
-//@line 1 "src/sprites.js"
+// File: src/sprites.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Sprites
 // (sprites are created using canvas paths)
@@ -7378,7 +7355,7 @@ var drawExclamationPoint = function(ctx,x,y) {
 
     ctx.restore();
 };
-//@line 1 "src/Actor.js"
+// File: src/Actor.js
 //////////////////////////////////////////////////////////////////////////////////////
 // The actor class defines common data functions for the ghosts and pacman
 // It provides everything for updating position and direction.
@@ -7568,7 +7545,7 @@ Actor.prototype.update = function(j) {
     // update head direction
     this.steer();
 };
-//@line 1 "src/Ghost.js"
+// File: src/Ghost.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Ghost class
 
@@ -8040,7 +8017,7 @@ Ghost.prototype.setTarget = function() {
         this.targetting = 'pacman';
     }
 };
-//@line 1 "src/Player.js"
+// File: src/Player.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Player is the controllable character (Pac-Man)
 
@@ -8270,7 +8247,7 @@ Player.prototype.update = function(j) {
         }
     }
 };
-//@line 1 "src/actors.js"
+// File: src/actors.js
 //////////////////////////////////////////////////////////////////////////////////////
 // create all the actors
 
@@ -8307,7 +8284,7 @@ pacman.pathColor = "rgba(255,255,0,0.8)";
 // (suggests drawing/update order)
 var actors = [blinky, pinky, inky, clyde, pacman];
 var ghosts = [blinky, pinky, inky, clyde];
-//@line 1 "src/targets.js"
+// File: src/targets.js
 /////////////////////////////////////////////////////////////////
 // Targetting
 // (a definition for each actor's targetting algorithm and a draw function to visualize it)
@@ -8567,7 +8544,7 @@ pacman.getPathDistLeft = function(fromPixel, dirEnum) {
 };
 
 })();
-//@line 1 "src/ghostCommander.js"
+// File: src/ghostCommander.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Ghost Commander
 // Determines when a ghost should be chasing a target
@@ -8673,7 +8650,7 @@ var ghostCommander = (function() {
         },
     };
 })();
-//@line 1 "src/ghostReleaser.js"
+// File: src/ghostReleaser.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Ghost Releaser
 
@@ -8827,7 +8804,7 @@ var ghostReleaser = (function(){
         },
     };
 })();
-//@line 1 "src/elroyTimer.js"
+// File: src/elroyTimer.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Elroy Timer
 
@@ -8895,7 +8872,7 @@ var elroyTimer = (function(){
         load: load,
     };
 })();
-//@line 1 "src/energizer.js"
+// File: src/energizer.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Energizer
 
@@ -9005,7 +8982,7 @@ var energizer = (function() {
         updatePointsTimer: function() { if (pointsFramesLeft > 0) pointsFramesLeft--; },
     };
 })();
-//@line 1 "src/fruit.js"
+// File: src/fruit.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Fruit
 
@@ -9356,7 +9333,7 @@ var setFruitFromGameMode = (function() {
         }
     };
 })();
-//@line 1 "src/executive.js"
+// File: src/executive.js
 var executive = (function(){
 
     var framePeriod = 1000/60; // length of each frame at 60Hz (updates per second)
@@ -9499,7 +9476,7 @@ var executive = (function(){
         getFps: function() { return fps; },
     };
 })();
-//@line 1 "src/states.js"
+// File: src/states.js
 //////////////////////////////////////////////////////////////////////////////////////
 // States
 // (main loops for each state of the game)
@@ -11141,7 +11118,7 @@ var overState = (function() {
     };
 })();
 
-//@line 1 "src/input.js"
+// File: src/input.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Input
 // (Handles all key presses and touches)
@@ -11416,7 +11393,7 @@ var initSwipe = function() {
     document.ontouchmove = touchMove;
     document.ontouchcancel = touchCancel;
 };
-//@line 1 "src/cutscenes.js"
+// File: src/cutscenes.js
 ////////////////////////////////////////////////
 // Cutscenes
 //
@@ -12555,7 +12532,7 @@ var triggerCutsceneAtEndLevel = function() {
     return false;
 };
 
-//@line 1 "src/maps.js"
+// File: src/maps.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Maps
 
@@ -13098,7 +13075,7 @@ mapMsPacman4.fruitPaths = {
                  { "path": "<vvv>>>>>>^^^^^^^^^>>>vv>>>>" }
              ]
          };
-//@line 1 "src/vcr.js"
+// File: src/vcr.js
 //////////////////////////////////////////////////////////////////////////////////////
 // VCR
 // This coordinates the recording, rewinding, and replaying of the game state.
@@ -13507,7 +13484,7 @@ var vcr = (function() {
         },
     };
 })();
-//@line 1 "src/main.js"
+// File: src/main.js
 //////////////////////////////////////////////////////////////////////////////////////
 // Entry Point
 
