@@ -14,7 +14,7 @@ var turboMode = false;
 var gameMode = GAME_PACMAN;
 var getGameName = (function(){
 
-    var names = ["PAC-MAN", "GAY-MAN", "STRABIC-MAN","CRAZY OTTO"];
+    var names = ["PAC-MAN", "FROCYO-MAN", "BOTTA-MAN","CRAZY OTTO"];
     
     return function(mode) {
         if (mode == undefined) {
